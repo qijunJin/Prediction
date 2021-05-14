@@ -27,5 +27,18 @@ Correlation matrix
 
 ![alt text](https://github.com/qijunJin/Prediction/blob/master/result/Result_Date/Corr.png)
 
-Result
+Result of regression
 
+![alt text](https://github.com/qijunJin/Prediction/blob/master/result/Result_Date/Result.png)
+
+Linear
+
+![alt text](https://github.com/qijunJin/Prediction/blob/master/result/Result_Date/LINEAR.png)
+
+Forest
+
+![alt text](https://github.com/qijunJin/Prediction/blob/master/result/Result_Date/FOREST.png)
+
+KNN
+
+![alt text](https://github.com/qijunJin/Prediction/blob/master/result/Result_Date/KNN.png)

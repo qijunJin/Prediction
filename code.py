@@ -257,7 +257,7 @@ X6_frequency_2016 = frequency(X6_2016)
 X6_frequency_2017 = frequency(X6_2017)
 X6_frequency_2018 = frequency(X6_2018)
 
-X6_frequency = pd.merge(X_customer_copy, X6_frequency_2017[['customer', 'frequency']], on='customer', how = 'left').rename(columns = {'frequency': 'frequency_2017'})
+X6_frequency = pd.merge(X_customer_copy, X6_frequency_2016[['customer', 'frequency']], on='customer', how = 'left').rename(columns = {'frequency': 'frequency_2016'})
 X6_frequency = pd.merge(X6_frequency, X6_frequency_2017[['customer', 'frequency']], on='customer', how = 'left').rename(columns = {'frequency': 'frequency_2017'})
 X6_frequency = pd.merge(X6_frequency, X6_frequency_2018[['customer', 'frequency']], on='customer', how = 'left').rename(columns = {'frequency': 'frequency_2018'})
 
@@ -289,7 +289,9 @@ X6_billing_2016 = billing(X6_2016)
 X6_billing_2017 = billing(X6_2017)
 X6_billing_2018 = billing(X6_2018)
 
-X6_billing = pd.merge(X_customer_copy, X6_billing_2017[['customer', 'billing']], on='customer', how = 'left').rename(columns = {'billing': 'billing_2017'})
+X6_billing = pd.merge(X_customer_copy, X6_billing_2016[['customer', 'billing']], on='customer', how = 'left').rename(columns = {'billing': 'billing_2016'})
+X6_billing = pd.merge(X6_billing, X6_billing_2017[['customer', 'billing']], on='customer', how = 'left').rename(columns = {'billing': 'billing_2017'})
+X6_billing = pd.merge(X6_billing, X6_billing_2018[['customer', 'billing']], on='customer', how = 'left').rename(columns = {'billing': 'billing_2018'})
 
 X6_billing = X6_billing.dropna()
 
@@ -320,7 +322,7 @@ def mergeClusters(X6_customer, X6_recency, X6_frequency, X6_billing, year):
     X6_customer['overall'] = X6_customer['recencyCluster_' + str(year)] + X6_customer['frequencyCluster_' + str(year)] + X6_customer['billingCluster_' + str(year)]
     
     X6_customer = pd.merge(X6_customer, X6_recency[['customer', 'recency']], on='customer').rename(columns = {'recency': 'recency_' + str(year)})
-    X6_customer = pd.merge(X6_customer, X6_frequency[['customer', 'frequency']], on='customer').rename(columns = {'frequency': 'billing_' + str(year)})
+    X6_customer = pd.merge(X6_customer, X6_frequency[['customer', 'frequency']], on='customer').rename(columns = {'frequency': 'frequency_' + str(year)})
     X6_customer = pd.merge(X6_customer, X6_billing[['customer', 'billing']], on='customer').rename(columns = {'billing': 'billing_' + str(year)})
     X6_customer.groupby('overall')[['recency_' + str(year),'frequency_' + str(year),'billing_' + str(year)]].mean()
     
